@@ -5,43 +5,43 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running Unit and Integration Tests...'
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
         stage('Code Analysis') {
             steps {
                 echo 'Performing Code Analysis...'
-                sh 'sonar-scanner'
+                bat 'sonar-scanner'
             }
         }
         stage('Security Scan') {
             steps {
                 echo 'Performing Security Scan...'
-                sh 'dependency-check.sh'
+                bat 'dependency-check.sh'
             }
         }
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to Staging...'
-                sh 'deploy.sh staging'
+                bat 'deploy.sh staging'
             }
         }
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running Integration Tests on Staging...'
-                sh 'mvn verify -Pstaging'
+                bat 'mvn verify -Pstaging'
             }
         }
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to Production...'
-                sh 'deploy.sh production'
+                bat 'deploy.sh production'
             }
         }
     }
