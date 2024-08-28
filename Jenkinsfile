@@ -5,13 +5,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                bat 'mvn clean package'
+                bat 'gradlew build'
             }
         }
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running Unit and Integration Tests...'
-                bat 'mvn test'
+                bat 'gradlew test'
             }
         }
         stage('Code Analysis') {
